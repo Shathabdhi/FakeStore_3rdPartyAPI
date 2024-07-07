@@ -1,0 +1,38 @@
+Serialisation and deserialization
+DeSeralisation-> is the process of converting an JSON string to and object
+Serialisation -> is the process of converting an object to an JSON String
+
+FakestoreProductResponseDTO ==>
+    /*
+    * Schema change is the biggest pain
+    * we can return the product entity as well but to avoid the risk of FS main website itself
+    changed its schema then we can not change our entity structure.
+    * So We create FakestoreProductResponseDTO
+    * Make sure attribute name matches with the json name
+    * {
+    "id": 1,
+    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "price": 109.95,
+    "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    "category": "men's clothing",
+    "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    "rating": {
+      "rate": 3.9,
+      "count": 120
+    }
+    * rating is an object so have to create a new class
+     */
+
+Client @Component
+* If we cant mark it @Service, @Controller,@Repository ==> then we can mark it as @Component to create its
+object by using field injection in another class
+
+
+IN JAVA EVERYTHING DEPENDS ON BEAN AND BEANS ARE DEFINED BY @.. (DEPENDENCY INJECTION)
+
+@Value == > this will give the string a url or a name
+
+ResponseEntity<FakestoreProductResponseDTO[]> productResponseList =
+        restTemplate.getForEntity(fakeStoreGetAllProductsURL, FakestoreProductResponseDTO[].class);
+
+* Response Entity is a ready to use code which converts a json string into a object and returns it in a format
